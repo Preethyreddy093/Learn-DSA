@@ -1,0 +1,36 @@
+class LL{
+    Node head;
+    public class Node{
+        int data;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public void addFront(int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+             head=n;
+        n.next=head;
+        head=n;
+    }
+    public void printList()
+    {
+        Node curr=head;
+        while(curr!=null)
+        {
+            System.out.print(curr.data+"->");
+            curr=curr.next;
+        }
+        System.out.println("NULL");
+    }
+    public static void main(String[] args)
+    {
+        LL list=new LL();
+        list.addFront(8);
+        list.printList();
+    }
+}
