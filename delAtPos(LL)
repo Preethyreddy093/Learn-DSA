@@ -1,0 +1,18 @@
+public void delAtPos(int index)
+    {
+        if(head==null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        if(index==0)
+        {
+            head.next=head;
+            size--;
+            return;
+        }
+        Node curr=head;
+        for(int i=1;i<index;i++)
+            curr=curr.next;
+        curr.next=curr.next.next;
+    }
