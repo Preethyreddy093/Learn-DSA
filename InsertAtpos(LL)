@@ -1,0 +1,67 @@
+class LL{
+    Node head;
+    int size=0;
+    class Node{
+        int data;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+            this.next=null;
+        }
+    }
+    public void addFront(int data)
+    {
+        Node n=new Node(data);
+        size++;
+        if(head==null)
+        {
+            head=n;
+            return;
+        }
+        n.next=head;
+        head=n;
+    }
+    public void addAtPos(int index,int data)
+    {
+        Node n=new Node(data);
+        if(head==null||index==0)
+        {
+            head=n;
+            return;
+        }
+        Node curr=head;
+        for(int i=1;i<size;i++)
+        {
+            if(i==index)
+            {
+                Node nextnode=curr.next;
+                curr.next=n;
+                n.next=nextnode;
+                break;
+            }
+            curr=curr.next;
+            size++;
+        }
+    }
+    public void printList()
+    {
+        Node curr=head;
+        while(curr!=null)
+        {
+            System.out.print(curr.data+"-->");
+            curr=curr.next;
+        }
+        System.out.println("NULL");
+    }
+    public static void main(String[] args)
+    {
+        LL list=new LL();
+        list.addFront(5);
+        list.addFront(4);
+        list.addFront(2);
+        list.addFront(1);
+        list.addAtPos(2,3);
+        list.printList();
+    }
+}
