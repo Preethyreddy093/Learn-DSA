@@ -1,0 +1,106 @@
+class CSLL{
+    Node head;
+    Node tail;
+    class Node{
+        int data;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+            this.next=null;
+        }
+    }
+    CSLL()
+    {
+        this.head=null;
+        this.tail=null;
+    }
+    public void addFirst(int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=tail=n;
+            tail.next=head;
+        }
+        else
+        {
+            n.next=head;
+            head=n;
+            tail.next=head;
+        }
+    }
+    public void display()
+    {
+        Node temp=head;
+        do{
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }while(temp!=head);
+        System.out.println("NULL");
+    }
+    public void addLast(int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=tail=n;
+            tail.next=n;
+        }
+        else
+        {
+            tail.next=n;
+            tail=n;
+            tail.next=head;
+        }
+    }
+    public void deleteFirst()
+    {
+        if(head==null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        if(head==tail)
+        {
+            head=tail=null;
+        }
+        else
+        {
+             head=head.next;
+            tail.next=head;
+        }
+    }
+    public void deleteLast()
+    {
+        if(head==null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        if(head==tail)
+            head=tail=null;
+        else
+        {
+            Node temp=head;
+            while(temp.next!=tail)
+                temp=temp.next;
+            temp.next=head;
+            tail=temp;
+        }
+    }
+    public static void main(String[] args)
+    {
+        CSLL list=new CSLL();
+        list.addFirst(1);
+        list.addFirst(2);
+        list.display();
+        list.addLast(3);
+        list.addLast(4);
+        list.display();
+        list.deleteFirst();
+        list.display();
+        list.deleteLast();
+        list.display();
+    }
+}
