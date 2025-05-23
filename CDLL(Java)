@@ -1,0 +1,103 @@
+class CDLL{
+     Node head;
+    Node tail;
+    class Node{
+        int data;
+        Node prev;
+        Node next;
+        Node(int data)
+        {
+            this.data=data;
+            this.prev=null;
+            this.next=null;
+        }
+    }
+    CDLL(){
+        this.head=null;
+        this.tail=null;
+    }
+    public void addFront(int data)
+    {
+        Node n=new Node(data);
+        if(head==null)
+        {
+            head=tail=n;
+            head.next=head;
+            head.prev=head;
+            return;
+        }
+            n.next=head;
+            n.prev=tail;
+            head.prev=n;
+            head=n;
+            tail.next=head;
+    }
+    public void addLast(int data)
+    {
+        Node n=new Node(data);
+        if(tail==null)
+        {
+            head=tail=n;
+            head.prev=head;
+            head.next=head;
+        }
+        else
+        {
+            tail.next=n;
+            n.prev=tail;
+            tail=n;
+            tail.next=head;
+            head.prev=tail;
+            
+        }
+    }
+    public void deleteFront()
+    {
+        if(head==null)
+        {
+            System.out.println("Empty list");
+            return;
+        }
+        head=head.next;
+        head.prev=tail;
+        tail.next=head;
+    }
+    public void displayFront()
+    {
+        Node temp=head;
+        if(head==null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        do{
+            System.out.print(temp.data+"-->");
+            temp=temp.next;
+        }
+        while(temp!=head);
+        System.out.println("NULL");
+    }
+    public void deleteLast()
+    {
+        if(tail==null)
+        {
+            System.out.println("Empty");
+            return;
+        }
+        tail=tail.prev;
+        tail.next=head;
+    }
+    public static void main(String[] args)
+    {
+        CDLL list=new CDLL();
+        list.addFront(20);
+        list.addFront(10);
+        list.addLast(30);
+        list.addLast(40);
+        list.displayFront();
+        list.deleteFront();
+        list.displayFront();
+        list.deleteLast();
+        list.displayFront();
+    }
+}
